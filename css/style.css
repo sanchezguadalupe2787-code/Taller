@@ -1,0 +1,500 @@
+:root {
+    --navy: #0a0a0c;
+    --navy-2: #151517;
+    --navy-3: #1f1f22;
+    --blue: #ff6a1a;
+    --blue-light: #ff8c42;
+    --blue-pale: #fff1e6;
+    --plata: #c9ccd2;
+    --plata-oscura: #9a9ea6;
+    --surface: #f5f5f6;
+    --card-border: #e4e4e8;
+    --texto: #1a1a1c;
+    --gris: #6b6b72;
+    --blanco: #ffffff;
+    --verde: #1f9d6b;
+    --rojo: #e05454;
+    --amarillo: #e0a233;
+    --sombra: 0 2px 10px rgba(10,10,12,0.10);
+    --tabbar-h: 62px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--surface);
+    color: var(--texto);
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ---------- Barra superior ---------- */
+.topbar {
+    background: var(--navy);
+    color: var(--blanco);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    flex-wrap: wrap;
+    box-shadow: var(--sombra);
+    gap: 10px;
+}
+.topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+.topbar-brand b { color: var(--blue-light); font-weight: 700; }
+.topbar-brand .logo-img { height: 30px; width: auto; display: block; border-radius: 4px; }
+.logo-gear {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--blue-light);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--navy);
+}
+.topbar-nav { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.topbar-nav a {
+    padding: 7px 11px;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    color: #d6d6da;
+    transition: background .2s, color .2s;
+    white-space: nowrap;
+}
+.topbar-nav a:hover, .topbar-nav a.activo { background: rgba(255,255,255,0.08); color: #fff; }
+.topbar-nav a.activo { color: var(--blue-light); }
+.topbar-user { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; color: #d6d6da; }
+.topbar-user small { opacity: 0.75; }
+.btn-logout {
+    background: var(--blue);
+    padding: 7px 14px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.85rem;
+}
+.btn-logout:hover { background: var(--blue-light); }
+
+/* ---------- Navegación móvil (hamburguesa) ---------- */
+.nav-toggle {
+    display: none;
+    background: rgba(255,255,255,0.08);
+    border: none;
+    width: 38px; height: 38px;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+.nav-toggle svg { width: 20px; height: 20px; }
+
+/* ---------- Barra inferior tipo app (solo móvil) ---------- */
+.tabbar {
+    display: none;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 40;
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 6px max(6px, env(safe-area-inset-left)) calc(6px + env(safe-area-inset-bottom));
+    box-shadow: 0 -4px 16px rgba(0,0,0,0.25);
+}
+.tabbar-inner { display: flex; justify-content: space-around; }
+.tabbar a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: #9a9aa0;
+    font-size: 0.64rem;
+    padding: 4px 6px;
+    border-radius: 10px;
+    flex: 1;
+    min-width: 0;
+}
+.tabbar a svg { width: 20px; height: 20px; }
+.tabbar a span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.tabbar a.activo { color: var(--blue); }
+
+/* ---------- Botón flotante "Instalar app" ---------- */
+.pwa-install-btn {
+    display: none;
+    position: fixed;
+    right: 16px;
+    bottom: calc(16px + var(--tabbar-h));
+    z-index: 45;
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 6px 18px rgba(255,106,26,0.45);
+    cursor: pointer;
+    align-items: center;
+    gap: 8px;
+}
+.pwa-install-btn svg { width: 16px; height: 16px; }
+.pwa-install-btn.visible { display: inline-flex; }
+
+/* ---------- Contenido ---------- */
+.contenido {
+    max-width: 1200px;
+    margin: 24px auto;
+    padding: 0 20px 40px;
+    min-height: 60vh;
+}
+
+.footer {
+    text-align: center;
+    padding: 18px;
+    color: var(--gris);
+    font-size: 0.82rem;
+    background: var(--navy);
+}
+.footer p { margin: 0; color: #9fb0ca; }
+
+/* ---------- Tarjetas / paneles ---------- */
+.panel {
+    background: var(--blanco);
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+    box-shadow: var(--sombra);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.panel h2, .panel h3 { margin-top: 0; color: var(--navy); font-weight: 500; }
+
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.card-stat {
+    background: var(--blanco);
+    border: 1px solid var(--card-border);
+    border-left: 4px solid var(--blue);
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: var(--sombra);
+}
+.card-stat .valor { font-size: 1.8rem; font-weight: 500; color: var(--navy); }
+.card-stat .etiqueta { color: var(--gris); font-size: 0.9rem; }
+
+/* ---------- Formularios ---------- */
+.form-grupo { margin-bottom: 14px; display: flex; flex-direction: column; gap: 6px; }
+.form-grupo label { font-weight: 600; font-size: 0.9rem; color: var(--navy); }
+input, select, textarea {
+    padding: 9px 10px;
+    border: 1px solid var(--card-border);
+    border-radius: 7px;
+    font-size: 0.95rem;
+    width: 100%;
+    font-family: inherit;
+    background: var(--blanco);
+    color: var(--texto);
+}
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(255,106,26,0.16);
+}
+.form-fila { display: flex; gap: 16px; flex-wrap: wrap; }
+.form-fila .form-grupo { flex: 1; min-width: 200px; }
+
+.btn {
+    display: inline-block;
+    padding: 9px 18px;
+    border: none;
+    border-radius: 7px;
+    background: var(--blue);
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background .2s;
+}
+.btn:hover { background: var(--blue-light); }
+.btn-secundario { background: var(--gris); }
+.btn-secundario:hover { background: #55606b; }
+.btn-peligro { background: var(--rojo); }
+.btn-peligro:hover { background: #c0392b; }
+.btn-exito { background: var(--verde); }
+.btn-exito:hover { background: #17805a; }
+.btn-sm { padding: 5px 10px; font-size: 0.82rem; }
+
+/* ---------- Tablas ---------- */
+table { width: 100%; border-collapse: collapse; background: var(--blanco); }
+thead { background: var(--navy); color: #fff; }
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--card-border); font-size: 0.92rem; }
+tbody tr:hover { background: var(--blue-pale); }
+.tabla-contenedor { overflow-x: auto; border-radius: 10px; box-shadow: var(--sombra); border: 1px solid var(--card-border); }
+
+/* ---------- Badges de estado ---------- */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #fff;
+}
+.badge-recibido { background: var(--gris); }
+.badge-en_diagnostico { background: #6b4fb0; }
+.badge-en_reparacion { background: var(--amarillo); color: #4a3100; }
+.badge-esperando_refacciones { background: #c98b1a; }
+.badge-listo { background: #16a085; }
+.badge-entregado { background: var(--verde); }
+.badge-cancelado { background: var(--rojo); }
+
+/* ---------- Alertas ---------- */
+.alerta {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 0.92rem;
+}
+.alerta-exito { background: #dcf5ea; color: #136c47; border: 1px solid #a9e6c6; }
+.alerta-error { background: #fbe1df; color: #a1291d; border: 1px solid #f5c2be; }
+.alerta-info  { background: var(--blue-pale); color: #13487e; border: 1px solid #bcd7f5; }
+
+/* ---------- Login (D'Juniors) ---------- */
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    background: var(--navy);
+    color: #fff;
+}
+.login-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(120deg, rgba(10,10,12,0.95) 20%, rgba(10,10,12,0.6) 65%, rgba(10,10,12,0.9)),
+        radial-gradient(circle at 25% 30%, rgba(255,106,26,0.22), transparent 55%);
+    z-index: 0;
+}
+.login-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 32px;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+.login-brand { max-width: 520px; }
+.login-logo-img {
+    max-width: 100%;
+    width: 420px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 12px 30px rgba(255,106,26,0.18));
+}
+.login-brand .lema {
+    margin-top: 18px;
+    color: var(--plata);
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+.login-box {
+    background: var(--blue-pale);
+    color: var(--texto);
+    padding: 36px 34px;
+    border-radius: 16px;
+    width: 360px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+}
+.login-box h3 { font-size: 1.5rem; color: var(--navy); margin: 0 0 4px; text-align: center; font-weight: 700; }
+.login-box p.subtitulo { color: var(--gris); font-size: 0.88rem; margin: 0 0 22px; text-align: center; }
+.login-field {
+    position: relative;
+    margin-bottom: 14px;
+}
+.login-field .icono {
+    position: absolute;
+    left: 12px; top: 50%; transform: translateY(-50%);
+    color: var(--gris);
+    display: flex;
+}
+.login-field input {
+    padding-left: 38px;
+    padding-right: 38px;
+    background: var(--blanco);
+    border: 1px solid var(--card-border);
+}
+.toggle-password {
+    position: absolute;
+    right: 10px; top: 50%; transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--gris);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+}
+.login-box .btn { width: 100%; margin-top: 6px; padding: 11px; font-size: 1rem; }
+.login-box .btn-logout-link { display: block; text-align: center; margin-top: 14px; font-size: 0.85rem; color: var(--blue); }
+.login-nota {
+    text-align: center;
+    font-size: 0.76rem;
+    color: var(--gris);
+    line-height: 1.5;
+    margin: 16px 0 0;
+}
+.login-shortcuts {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--card-border);
+}
+.login-shortcuts span {
+    font-size: 0.7rem;
+    color: var(--gris);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.login-shortcuts svg { color: var(--blue); width: 22px; height: 22px; }
+.login-default {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--plata);
+    margin-top: 18px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- Aviso de privacidad ---------- */
+.aviso-privacidad {
+    background: var(--blue-pale);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 6px 0 16px;
+}
+.aviso-privacidad p {
+    margin: 0 0 10px;
+    font-size: 0.82rem;
+    color: var(--texto);
+    line-height: 1.5;
+}
+.checkbox-privacidad {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--navy);
+    cursor: pointer;
+}
+.checkbox-privacidad input { width: auto; margin-top: 2px; }
+
+/* ---------- Utilidades ---------- */
+.flex-entre { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.text-derecha { text-align: right; }
+.text-centro { text-align: center; }
+.mt-0 { margin-top: 0; }
+.acciones { display: flex; gap: 6px; flex-wrap: wrap; }
+
+@media (max-width: 860px) {
+    .login-inner { flex-direction: column; text-align: center; padding: 30px 20px; }
+    .login-logo-img { margin: 0 auto; }
+    .login-box { width: 100%; max-width: 380px; }
+}
+
+/* ---------- Portal de clientes ---------- */
+.portal-saludo { color: var(--gris); font-size: 0.95rem; margin: -8px 0 20px; }
+.saldo-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+.saldo-chip.al-dia { background: #dcf5ea; color: #136c47; }
+.saldo-chip.pendiente { background: #fde6da; color: #a1431d; }
+.vehiculo-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background: var(--blanco);
+}
+.vehiculo-card:hover { border-color: var(--blue); }
+.vehiculo-card .veh-info b { color: var(--navy); }
+.vehiculo-card .veh-info span { display: block; font-size: 0.82rem; color: var(--gris); }
+
+/* ---------- Encabezados de sección con icono ---------- */
+.seccion-icono {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    background: var(--blue-pale);
+    color: var(--blue);
+    margin-right: 8px;
+}
+.seccion-icono svg { width: 18px; height: 18px; }
+
+/* ---------- Responsive general: navegación, tabbar, tablas ---------- */
+@media (max-width: 880px) {
+    .topbar { padding: 10px 14px; position: relative; }
+    .nav-toggle { display: inline-flex; order: 3; }
+    .topbar-brand { order: 1; flex: 1; }
+    .topbar-user { order: 2; gap: 8px; }
+    .topbar-user span { display: none; }
+    .topbar-nav {
+        display: none;
+        order: 4;
+        width: 100%;
+        flex-direction: column;
+        gap: 2px;
+        background: var(--navy-2);
+        border-radius: 10px;
+        padding: 8px;
+        margin-top: 8px;
+    }
+    .topbar-nav.abierta { display: flex; }
+    .topbar-nav a { padding: 10px 12px; }
+
+    body { padding-bottom: var(--tabbar-h); }
+    .tabbar { display: block; }
+    .contenido { margin: 16px auto; padding: 0 12px calc(24px + var(--tabbar-h)); }
+
+    .panel { padding: 16px; border-radius: 10px; }
+    th, td { padding: 8px 10px; font-size: 0.85rem; }
+    .form-fila { gap: 10px; }
+    .login-box { padding: 28px 22px; }
+}
+
+@media (min-width: 881px) {
+    .tabbar { display: none !important; }
+    .pwa-install-btn.visible { bottom: 16px; }
+}
